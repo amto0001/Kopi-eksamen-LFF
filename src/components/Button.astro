@@ -1,0 +1,24 @@
+---
+// Henter parametrene fra Astro.props
+const { variant = "filled-primary", size = "responsive-default" } = Astro.props;
+
+//Styling, der gør sig gældende for alle knapper
+const buttonStyling = "font-bold font-montserrat cursor-pointer "; 
+
+//Styling, der gør sig gældende for de forskellige varianter 
+const variantClasses = {
+    "filled-primary": "px-6 py-2 md:px-10 md:py-2.5 bg-primary-600 text-primary-950 hover:bg-primary-50 focus:bg-primary-600 focus:shadow-drop-25 active:shadow-drop-50 disabled:bg-primary-50 disabled:cursor-not-allowed",
+    "outline-primary": "px-6 py-2 md:px-10 md:py-2.5 border border-primary-600 text-primary-600 hover:bg-primary-50 hover:shadow-drop-25 focus:shadow-drop-50 active:shadow-drop-25 disabled:border-primary-100 disabled:cursor-not-allowed",
+    "filled-secondary": "px-6 py-2 md:px-10 md:py-2.5 bg-primary-950 text-primary-600 hover:bg-primary-900 focus:bg-primary-900 focus:shadow-drop-25 active:shadow-drop-50 active:bg-primary-950 disabled:bg-primary-950 disabled:text-primary-800 disabled:cursor-not-allowed",
+    "outline-secondary": "px-6 py-2 md:px-10 md:py-2.5 border border-primary-950 text-primary-950 hover:bg-primary-800 hover:shadow-drop-25 focus:shadow-drop-50 focus:bg-primary-50 active:shadow-drop-25 disabled:border-primary-800 disabled:cursor-not-allowed",
+    "plus-primary": "px-3 py-1.5 md:px-4 md:py-2 bg-primary-600 text-primary-950 hover:bg-primary-700",
+    "minus-primary": "px-4 py-1.5 md:px-5 md:py-2 bg-primary-300 text-primary-950 hover:bg-primary-400",
+};
+
+//Styling, der gør sig gældende for de forskelligeog størrelser.
+const sizeClasses = {
+"responsive-default": "text-s md:text-xl ",
+};
+---
+<!--Astros class:list sammensætter knappens classes baseret på styling, variant og størrelse-->
+<button class:list={[buttonStyling, variantClasses[variant], sizeClasses[size]]}><slot /></button>
